@@ -1,38 +1,22 @@
 package com.croakzh.service.common;
 
+import lombok.AllArgsConstructor;
+import lombok.Data;
+import lombok.NoArgsConstructor;
+
+/**
+ * 自定义异常
+ *
+ * @author croakzh
+ */
+@Data
+@NoArgsConstructor
+@AllArgsConstructor
 public class BizException extends RuntimeException {
 
     private static final long serialVersionUID = 1L;
 
-    private Integer errorcode = 0;
+    private Integer errorCode = 0;
     private String description = "";
 
-    public BizException() {
-        super();
-    }
-
-    public BizException(Integer errorcode) {
-        this.errorcode = errorcode;
-    }
-
-    public BizException(Integer errorcode, String description) {
-        this.errorcode = errorcode;
-        this.description = description;
-    }
-
-    public String getDescription() {
-        return description;
-    }
-
-    public void setDescription(String description) {
-        this.description = description;
-    }
-
-    public Integer getErrorcode() {
-        return errorcode;
-    }
-
-    public void setErrorcode(Integer errorcode) {
-        this.errorcode = errorcode;
-    }
 }
