@@ -1,7 +1,7 @@
 package com.croakzh.controller;
 
 import com.croakzh.controller.model.RSResult;
-import com.croakzh.entity.vo.ServerVo;
+import com.croakzh.core.entity.vo.ServerVo;
 import com.croakzh.service.common.BizException;
 import com.croakzh.service.impl.SystemServiceImpl;
 import lombok.extern.slf4j.Slf4j;
@@ -11,6 +11,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.ResponseBody;
 
 /**
  * 系统信息
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
  * @author croakzh
  */
 @Controller
-@RequestMapping("/server")
+@RequestMapping("/system")
 @Slf4j
 public class SystemController {
 
@@ -30,8 +31,9 @@ public class SystemController {
     }
 
     @PostMapping("/info")
-    public RSResult info(@RequestBody ServerVo cond) {
-        log.info("Start get system information, params : ", cond);
+    public @ResponseBody
+    RSResult info(@RequestBody ServerVo cond) {
+        log.info("Start get system information, params: ", cond);
         RSResult result = new RSResult();
         try {
 
@@ -49,15 +51,16 @@ public class SystemController {
      * @return {@link RSResult} 服务器详情
      */
     @PostMapping("/cpu/info")
-    public RSResult cpuInfo(@RequestBody ServerVo cond) {
+    public @ResponseBody
+    RSResult cpuInfo(@RequestBody ServerVo cond) {
         log.info("Start get cpu information, params : ", cond);
         RSResult result = new RSResult();
-        if (StringUtils.isNotEmpty(cond.getIp())) {
+        if (StringUtils.isEmpty(cond.getHost())) {
             result.setResult(-1);
             result.setMessage("服务器IP不能为空！");
             return result;
         }
-        if (StringUtils.isNotEmpty(cond.getUsername()) && StringUtils.isNotEmpty(cond.getPassword())) {
+        if (StringUtils.isEmpty(cond.getUsername()) && StringUtils.isEmpty(cond.getPassword())) {
             result.setResult(-1);
             result.setMessage("登录用户名和密码不能为空！");
             return result;

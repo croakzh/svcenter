@@ -1,0 +1,6 @@
+# logging
+logging:
+  config: classpath:log4j2/log4j2-spring.xml
+server:
+  servlet:
+    context-path: /svcenter

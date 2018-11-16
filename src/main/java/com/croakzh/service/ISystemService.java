@@ -1,7 +1,7 @@
 package com.croakzh.service;
 
-import com.croakzh.entity.CpuInfo;
-import com.croakzh.entity.vo.ServerVo;
+import com.croakzh.core.entity.CpuInfo;
+import com.croakzh.core.entity.vo.ServerVo;
 
 /**
  * @author croakzh
