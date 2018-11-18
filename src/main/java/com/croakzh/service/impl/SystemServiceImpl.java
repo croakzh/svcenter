@@ -4,6 +4,7 @@ import com.croakzh.core.context.ActionContext;
 import com.croakzh.core.entity.CpuInfo;
 import com.croakzh.core.entity.vo.ServerVo;
 import com.croakzh.service.ISystemService;
+import com.jcraft.jsch.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
@@ -23,7 +24,8 @@ public class SystemServiceImpl implements ISystemService {
     @Override
     public CpuInfo getCpuInfo(ServerVo serverVo) {
         String host = serverVo.getHost();
-        ActionContext.getSession(host);
+        Session session = ActionContext.getSession(host);
+
         return null;
     }
 }

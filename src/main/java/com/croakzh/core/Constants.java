@@ -12,4 +12,6 @@ public class Constants {
 
     public static final Integer DEFAULT_TIMEOUT = 60000;
 
+    public static final String CHARSET_UTF8 = "UTF-8";
+
 }
