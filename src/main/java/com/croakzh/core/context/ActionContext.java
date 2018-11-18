@@ -45,4 +45,13 @@ public class ActionContext {
         return connections;
     }
 
+    /**
+     * 根据host获取具体的服务器连接
+     * @param host 主机ip
+     * @return {@link Session}
+     */
+    public static Session getSession(String host) {
+        return connections.getOrDefault(host, null);
+    }
+
 }

@@ -18,7 +18,7 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 
 /**
- * 服务器
+ * 服务器连接
  *
  * @author croakzh
  */

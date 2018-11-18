@@ -1,14 +1,17 @@
 package com.croakzh.service.impl;
 
+import com.croakzh.core.context.ActionContext;
 import com.croakzh.core.entity.CpuInfo;
 import com.croakzh.core.entity.vo.ServerVo;
 import com.croakzh.service.ISystemService;
+import lombok.extern.slf4j.Slf4j;
 import org.springframework.stereotype.Service;
 
 /**
  * @author croakzh
  */
 @Service
+@Slf4j
 public class SystemServiceImpl implements ISystemService {
 
     /**
@@ -19,6 +22,8 @@ public class SystemServiceImpl implements ISystemService {
      */
     @Override
     public CpuInfo getCpuInfo(ServerVo serverVo) {
+        String host = serverVo.getHost();
+        ActionContext.getSession(host);
         return null;
     }
 }
