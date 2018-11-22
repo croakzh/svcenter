@@ -10,13 +10,26 @@ import lombok.NoArgsConstructor;
  * @author croakzh
  */
 @Data
-@NoArgsConstructor
 @AllArgsConstructor
 public class BizException extends RuntimeException {
 
+    /**
+     * serialVersionUID 持久化ID
+     */
     private static final long serialVersionUID = 1L;
 
-    private Integer errorCode = 0;
+    /**
+     * 错误码
+     */
+    private Integer errorcode = 0;
+    /**
+     * 错误描述
+     */
     private String description = "";
+
+
+    public BizException(Integer errorcode) {
+        this.errorcode = errorcode;
+    }
 
 }

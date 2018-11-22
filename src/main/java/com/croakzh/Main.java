@@ -1,6 +1,7 @@
 package com.croakzh;
 
 import com.croakzh.core.entity.CpuInfo;
+import com.croakzh.core.utils.ParseUtils;
 import com.jcraft.jsch.ChannelExec;
 import com.jcraft.jsch.JSch;
 import com.jcraft.jsch.Session;
@@ -13,6 +14,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 import java.util.Properties;
+import java.util.regex.Pattern;
 
 /**
  * @author croakzh
@@ -24,6 +26,11 @@ public class Main {
     private static int timeout = 60000;
 
     public static void main(String[] args) {
+        String line = "CPU family:            6";
+        String[] splits = Pattern.compile(":\\s").split(line);
+        System.out.println(splits.length);
+
+
         Map<String, Book> books = new HashMap<String, Book>(5) {
             {
                 put("1", new Book("1", true));

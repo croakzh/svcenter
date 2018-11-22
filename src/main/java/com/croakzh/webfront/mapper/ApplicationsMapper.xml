@@ -1,0 +1,178 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<mapper namespace="com.croakzh.webfront.mapper.ApplicationsMapper">
+
+	<sql id="selectSQL">
+		id, name, path, description, adduser, addtime, updateuser, updatetime
+	</sql>
+
+	<sql id="whereSQL">
+		where 1=1
+		<if test="id != null ">
+			<![CDATA[
+				and a.id = #{id}
+			]]>
+		</if>
+		<if test="name != null ">
+			<![CDATA[
+				and a.name = #{name}
+			]]>
+		</if>
+		<if test="path != null ">
+			<![CDATA[
+				and a.path = #{path}
+			]]>
+		</if>
+		<if test="description != null ">
+			<![CDATA[
+				and a.description = #{description}
+			]]>
+		</if>
+		<if test="adduser != null ">
+			<![CDATA[
+				and a.adduser = #{adduser}
+			]]>
+		</if>
+		<if test="addtime != null ">
+			<![CDATA[
+				and a.addtime = #{addtime}
+			]]>
+		</if>
+		<if test="updateuser != null ">
+			<![CDATA[
+				and a.updateuser = #{updateuser}
+			]]>
+		</if>
+		<if test="updatetime != null ">
+			<![CDATA[
+				and a.updatetime = #{updatetime}
+			]]>
+		</if>
+	</sql>
+
+	<select id="countApplicationss" resultType="Integer" parameterType="ApplicationsPo">
+		select count(*) from mt_applications a
+		<include refid="whereSQL" >
+		</include>
+		<if test="term != null and '' != term">
+			<![CDATA[
+			]]>
+		</if>
+	</select>
+
+	<select id="findAllApplicationss" resultType="ApplicationsPo" parameterType="ApplicationsPo">
+		select
+		<include refid="selectSQL" />
+		from mt_applications a
+	</select>
+
+	<select id="findApplicationssByPage" resultType="ApplicationsPo" parameterType="ApplicationsPo">
+		select
+		<include refid="selectSQL" />
+		from mt_applications a
+		<include refid="whereSQL" />
+		<if test="term != null and '' != term">
+			<![CDATA[
+			]]>
+		</if>
+		<choose>
+			<when test="sortord != null and '' != sortord">
+				order by a.${sortord}
+			</when>
+			<otherwise>
+				order by a.id desc
+			</otherwise>
+		</choose>
+		<if test="pagestart != null and pagesize != null">
+			limit #{pagestart}, #{pagesize}
+		</if>
+	</select>
+
+	<select id="getApplications" resultType="ApplicationsPo" parameterType="Integer">
+		select
+		<include refid="selectSQL" />
+		from mt_applications a
+		where a.id = #{id}
+	</select>
+
+	<insert id="addApplications" parameterType="ApplicationsPo">
+		insert into mt_applications
+		<trim prefix="(" suffix=")" suffixOverrides=",">
+			<if test="id != null ">id,</if>
+			<if test="name != null ">name,</if>
+			<if test="path != null ">path,</if>
+			<if test="description != null ">description,</if>
+			<if test="adduser != null ">adduser,</if>
+			<if test="addtime != null ">addtime,</if>
+			<if test="updateuser != null ">updateuser,</if>
+			<if test="updatetime != null ">updatetime,</if>
+		</trim>
+		<trim prefix="values (" suffix=")" suffixOverrides=",">
+			<if test="id != null ">#{id,jdbcType=INTEGER},</if>
+			<if test="name != null ">#{name,jdbcType=VARCHAR},</if>
+			<if test="path != null ">#{path,jdbcType=VARCHAR},</if>
+			<if test="description != null ">#{description,jdbcType=VARCHAR},</if>
+			<if test="adduser != null ">#{adduser,jdbcType=INTEGER},</if>
+			<if test="addtime != null ">#{addtime,jdbcType=VARCHAR},</if>
+			<if test="updateuser != null ">#{updateuser,jdbcType=INTEGER},</if>
+			<if test="updatetime != null ">#{updatetime,jdbcType=VARCHAR},</if>
+		</trim>
+		<selectKey keyProperty="id" resultType="Integer" order="AFTER">
+			select LAST_INSERT_ID()
+		</selectKey>
+	</insert>
+
+	<update id="updateApplications" parameterType="ApplicationsPo">
+		update mt_applications
+		<trim prefix="set" suffixOverrides="," suffix=" where id = #{id} ">
+			<if test="id != null">
+				<![CDATA[
+					id = #{id,jdbcType=INTEGER},
+				]]>
+			</if>
+			<if test="name != null">
+				<![CDATA[
+					name = #{name,jdbcType=VARCHAR},
+				]]>
+			</if>
+			<if test="path != null">
+				<![CDATA[
+					path = #{path,jdbcType=VARCHAR},
+				]]>
+			</if>
+			<if test="description != null">
+				<![CDATA[
+					description = #{description,jdbcType=VARCHAR},
+				]]>
+			</if>
+			<if test="adduser != null">
+				<![CDATA[
+					adduser = #{adduser,jdbcType=INTEGER},
+				]]>
+			</if>
+			<if test="addtime != null">
+				<![CDATA[
+					addtime = #{addtime,jdbcType=VARCHAR},
+				]]>
+			</if>
+			<if test="updateuser != null">
+				<![CDATA[
+					updateuser = #{updateuser,jdbcType=INTEGER},
+				]]>
+			</if>
+			<if test="updatetime != null">
+				<![CDATA[
+					updatetime = #{updatetime,jdbcType=VARCHAR},
+				]]>
+			</if>
+		</trim>
+	</update>
+
+	<delete id="deleteApplications" parameterType="Integer">
+		delete from mt_applications
+		where id= #{id}
+	</delete>
+
+</mapper>
