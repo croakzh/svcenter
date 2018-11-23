@@ -6,12 +6,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * table name : applications, table comment : 应用部署表
+ * table name : application, table comment : 应用部署表
  *
  * @author croakzh
  */
 @Data
-public class ApplicationsPo extends PageBean implements Serializable {
+public class ApplicationPo extends PageBean implements Serializable {
 
     /**
      * serialVersionUID 持久化ID
@@ -19,19 +19,24 @@ public class ApplicationsPo extends PageBean implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     /**
-     * 应用id
+     * 应用id,主键
      */
-    private Integer id;
+    private Integer applicationid;
+
+    /**
+     * 服务器id
+     */
+    private Integer serverid;
 
     /**
      * 应用名称
      */
-    private String name;
+    private String applicationname;
 
     /**
      * 应用部署路径
      */
-    private String path;
+    private String developpath;
 
     /**
      * 描述
@@ -39,19 +44,9 @@ public class ApplicationsPo extends PageBean implements Serializable {
     private String description;
 
     /**
-     * 新增人(管理员)
-     */
-    private Integer adduser;
-
-    /**
      * 新增时间
      */
     private String addtime;
-
-    /**
-     * 修改人
-     */
-    private Integer updateuser;
 
     /**
      * 修改时间

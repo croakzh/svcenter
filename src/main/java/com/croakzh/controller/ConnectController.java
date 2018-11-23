@@ -23,9 +23,9 @@ import java.util.Map;
  * @author croakzh
  */
 @Controller
-@RequestMapping("/server")
+@RequestMapping(value = "/connect")
 @Slf4j
-public class ServerController {
+public class ConnectController {
 
     /**
      * 服务器上线

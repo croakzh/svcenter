@@ -10,12 +10,12 @@ import com.croakzh.core.entity.vo.ServerVo;
 import com.croakzh.core.utils.ParseUtils;
 import com.croakzh.core.utils.ShellUtils;
 import com.croakzh.service.AbstractSystemService;
+import com.croakzh.service.Validator;
 import com.jcraft.jsch.Session;
 import lombok.extern.slf4j.Slf4j;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.stereotype.Service;
 
-import javax.xml.validation.Validator;
 import java.util.List;
 
 /**

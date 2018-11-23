@@ -3,9 +3,9 @@ package com.croakzh.webfront.service.impl;
 import com.croakzh.service.common.BizCache;
 import com.croakzh.service.common.BizErrorCode;
 import com.croakzh.service.common.BizException;
-import com.croakzh.webfront.service.IUsersService;
-import com.croakzh.webfront.mapper.UsersMapper;
-import com.croakzh.webfront.po.UsersPo;
+import com.croakzh.webfront.mapper.ServerMapper;
+import com.croakzh.webfront.po.ServerPo;
+import com.croakzh.webfront.service.IServerService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,114 +15,114 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * ServiceImpl code for the table : users
+ * ServiceImpl code for the table : server
  *
  * @author croakzh
  */
-@Service("usersService")
+@Service("serverService")
 @Slf4j
-public class UsersServiceImpl implements IUsersService {
+public class ServerServiceImpl implements IServerService {
 
     /**
-     * users表持久层接口
+     * server表持久层接口
      */
     @Autowired
-    @Qualifier("usersMapper")
-    private UsersMapper usersMapper;
+    @Qualifier("serverMapper")
+    private ServerMapper serverMapper;
 
     /**
      * 统计实体对象的数量
      *
-     * @param users 请求实体参数
+     * @param server 请求实体参数
      * @return 统计个数
      */
     @Override
-    public Integer countUserss(UsersPo users) {
-        log.debug("countUserss starting...");
+    public Integer countServers(ServerPo server) {
+        log.debug("countServers starting...");
         int count;
         try {
-            count = usersMapper.countUserss(users);
+            count = serverMapper.countServers(server);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("countUserss end.");
+        log.debug("countServers end.");
         return count;
     }
 
     /**
      * 统计实体对象的数量
      *
-     * @param users 请求实体参数
+     * @param server 请求实体参数
      * @return 统计个数
      */
     @Override
-    public List<UsersPo> findAllUserss(UsersPo users) {
-        log.debug("findAllUserss starting...");
-        List<UsersPo> userss;
+    public List<ServerPo> findAllServers(ServerPo server) {
+        log.debug("findAllServers starting...");
+        List<ServerPo> servers;
         try {
-            userss = usersMapper.findAllUserss(users);
+            servers = serverMapper.findAllServers(server);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("findAllUserss end.");
-        return userss;
+        log.debug("findAllServers end.");
+        return servers;
     }
 
     /**
      * 统计实体对象的数量
      *
-     * @param users 请求实体参数
+     * @param server 请求实体参数
      * @return 统计个数
      */
     @Override
-    public List<UsersPo> findUserssByPage(UsersPo users) {
-        log.debug("findUserssByPage starting...");
-        List<UsersPo> userss;
+    public List<ServerPo> findServersByPage(ServerPo server) {
+        log.debug("findServersByPage starting...");
+        List<ServerPo> servers;
         try {
-            userss = usersMapper.findUserssByPage(users);
+            servers = serverMapper.findServersByPage(server);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("findUserssByPage end.");
-        return userss;
+        log.debug("findServersByPage end.");
+        return servers;
     }
 
     /**
      * 获得具体的实体
      *
-     * @param userid 用户id
-     * @return 表users的具体实体
+     * @param serverid 服务器id
+     * @return 表server的具体实体
      */
     @Override
-    public UsersPo getUsers(Integer userid) {
-        log.debug("getUsers starting...");
-        UsersPo users;
+    public ServerPo getServer(Integer serverid) {
+        log.debug("getServer starting...");
+        ServerPo server;
         try {
-            users = usersMapper.getUsers(userid);
+            server = serverMapper.getServer(serverid);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("getUsers end.");
-        return users;
+        log.debug("getServer end.");
+        return server;
     }
 
     /**
      * 新增实体
      *
-     * @param users 请求实体参数
+     * @param server 请求实体参数
      * @return 操作成功数
      */
     @Override
-    public Integer addUsers(UsersPo users) {
-        log.debug("addUsers starting...");
+    public Integer addServer(ServerPo server) {
+        log.debug("addServer starting...");
         Integer retval;
         try {
-            users.setAddtime(BizCache.getInstance().getNow());
-            retval = usersMapper.addUsers(users);
+            server.setAddtime(BizCache.getInstance().getNow());
+            retval = serverMapper.addServer(server);
             if (retval == 0) {
                 throw new BizException(BizErrorCode.EX_ADD_FAIL);
             }
@@ -130,23 +130,23 @@ public class UsersServiceImpl implements IUsersService {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("addUsers end.");
+        log.debug("addServer end.");
         return retval;
     }
 
     /**
      * 更新实体
      *
-     * @param users 请求实体参数
+     * @param server 请求实体参数
      * @return 操作成功数
      */
     @Override
-    public Integer updateUsers(UsersPo users) {
-        log.debug("updateUsers starting...");
+    public Integer updateServer(ServerPo server) {
+        log.debug("updateServer starting...");
         Integer retval;
         try {
-            users.setUpdatetime(BizCache.getInstance().getNow());
-            retval = usersMapper.updateUsers(users);
+            server.setUpdatetime(BizCache.getInstance().getNow());
+            retval = serverMapper.updateServer(server);
             if (retval == 0) {
                 throw new BizException(BizErrorCode.EX_ADD_FAIL);
             }
@@ -154,27 +154,27 @@ public class UsersServiceImpl implements IUsersService {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("updateUsers end.");
+        log.debug("updateServer end.");
         return retval;
     }
 
     /**
      * 删除指定对象
      *
-     * @param userid 用户id
+     * @param serverid 服务器id
      * @return 操作成功数
      */
     @Override
-    public Integer deleteUsers(Integer userid) {
-        log.debug("deleteUsers starting...");
+    public Integer deleteServer(Integer serverid) {
+        log.debug("deleteServer starting...");
         Integer retval;
         try {
-            retval = usersMapper.deleteUsers(userid);
+            retval = serverMapper.deleteServer(serverid);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("deleteUsers end.");
+        log.debug("deleteServer end.");
         return retval;
     }
 }

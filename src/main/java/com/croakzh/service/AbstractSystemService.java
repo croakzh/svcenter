@@ -3,7 +3,6 @@ package com.croakzh.service;
 import lombok.extern.slf4j.Slf4j;
 
 import javax.annotation.PostConstruct;
-import javax.xml.validation.Validator;
 import java.util.Map;
 import java.util.concurrent.ConcurrentHashMap;
 
@@ -16,7 +15,7 @@ public abstract class AbstractSystemService implements ISystemService {
     /**
      * 维系不同系统服务接口
      */
-    public static Map<String, AbstractSystemService> systemsMap = new ConcurrentHashMap<>();
+    private Map<String, AbstractSystemService> systemsMap = new ConcurrentHashMap<>();
 
     @PostConstruct
     public void init() {
@@ -26,7 +25,7 @@ public abstract class AbstractSystemService implements ISystemService {
     /**
      * 获得具体的校验器
      *
-     * @return
+     * @return {@link Validator} 具体的校验器
      */
     public abstract Validator getValidator();
 

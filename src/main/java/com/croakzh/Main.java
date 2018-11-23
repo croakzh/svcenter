@@ -31,13 +31,6 @@ public class Main {
         System.out.println(splits.length);
 
 
-        Map<String, Book> books = new HashMap<String, Book>(5) {
-            {
-                put("1", new Book("1", true));
-                put("2", new Book("2", false));
-                put("2", new Book("2", true));
-            }
-        };
 //        books.forEach((k,v) -> {
 //            v.mine = v.mine?"1":"2";
 //        });

@@ -3,9 +3,9 @@ package com.croakzh.webfront.service.impl;
 import com.croakzh.service.common.BizCache;
 import com.croakzh.service.common.BizErrorCode;
 import com.croakzh.service.common.BizException;
-import com.croakzh.webfront.service.IServersService;
-import com.croakzh.webfront.mapper.ServersMapper;
-import com.croakzh.webfront.po.ServersPo;
+import com.croakzh.webfront.mapper.GroupMapper;
+import com.croakzh.webfront.po.GroupPo;
+import com.croakzh.webfront.service.IGroupService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Qualifier;
@@ -15,114 +15,114 @@ import java.sql.SQLException;
 import java.util.List;
 
 /**
- * ServiceImpl code for the table : servers
+ * ServiceImpl code for the table : group
  *
  * @author croakzh
  */
-@Service("serversService")
+@Service("groupService")
 @Slf4j
-public class ServersServiceImpl implements IServersService {
+public class GroupServiceImpl implements IGroupService {
 
     /**
-     * servers表持久层接口
+     * group表持久层接口
      */
     @Autowired
-    @Qualifier("serversMapper")
-    private ServersMapper serversMapper;
+    @Qualifier("groupMapper")
+    private GroupMapper groupMapper;
 
     /**
      * 统计实体对象的数量
      *
-     * @param servers 请求实体参数
+     * @param group 请求实体参数
      * @return 统计个数
      */
     @Override
-    public Integer countServerss(ServersPo servers) {
-        log.debug("countServerss starting...");
+    public Integer countGroups(GroupPo group) {
+        log.debug("countGroups starting...");
         int count;
         try {
-            count = serversMapper.countServerss(servers);
+            count = groupMapper.countGroups(group);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("countServerss end.");
+        log.debug("countGroups end.");
         return count;
     }
 
     /**
      * 统计实体对象的数量
      *
-     * @param servers 请求实体参数
+     * @param group 请求实体参数
      * @return 统计个数
      */
     @Override
-    public List<ServersPo> findAllServerss(ServersPo servers) {
-        log.debug("findAllServerss starting...");
-        List<ServersPo> serverss;
+    public List<GroupPo> findAllGroups(GroupPo group) {
+        log.debug("findAllGroups starting...");
+        List<GroupPo> groups;
         try {
-            serverss = serversMapper.findAllServerss(servers);
+            groups = groupMapper.findAllGroups(group);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("findAllServerss end.");
-        return serverss;
+        log.debug("findAllGroups end.");
+        return groups;
     }
 
     /**
      * 统计实体对象的数量
      *
-     * @param servers 请求实体参数
+     * @param group 请求实体参数
      * @return 统计个数
      */
     @Override
-    public List<ServersPo> findServerssByPage(ServersPo servers) {
-        log.debug("findServerssByPage starting...");
-        List<ServersPo> serverss;
+    public List<GroupPo> findGroupsByPage(GroupPo group) {
+        log.debug("findGroupsByPage starting...");
+        List<GroupPo> groups;
         try {
-            serverss = serversMapper.findServerssByPage(servers);
+            groups = groupMapper.findGroupsByPage(group);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("findServerssByPage end.");
-        return serverss;
+        log.debug("findGroupsByPage end.");
+        return groups;
     }
 
     /**
      * 获得具体的实体
      *
-     * @param id 服务器id
-     * @return 表servers的具体实体
+     * @param groupid 权限组id
+     * @return 表group的具体实体
      */
     @Override
-    public ServersPo getServers(Integer id) {
-        log.debug("getServers starting...");
-        ServersPo servers;
+    public GroupPo getGroup(Integer groupid) {
+        log.debug("getGroup starting...");
+        GroupPo group;
         try {
-            servers = serversMapper.getServers(id);
+            group = groupMapper.getGroup(groupid);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("getServers end.");
-        return servers;
+        log.debug("getGroup end.");
+        return group;
     }
 
     /**
      * 新增实体
      *
-     * @param servers 请求实体参数
+     * @param group 请求实体参数
      * @return 操作成功数
      */
     @Override
-    public Integer addServers(ServersPo servers) {
-        log.debug("addServers starting...");
+    public Integer addGroup(GroupPo group) {
+        log.debug("addGroup starting...");
         Integer retval;
         try {
-            servers.setAddtime(BizCache.getInstance().getNow());
-            retval = serversMapper.addServers(servers);
+            group.setAddtime(BizCache.getInstance().getNow());
+            retval = groupMapper.addGroup(group);
             if (retval == 0) {
                 throw new BizException(BizErrorCode.EX_ADD_FAIL);
             }
@@ -130,23 +130,23 @@ public class ServersServiceImpl implements IServersService {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("addServers end.");
+        log.debug("addGroup end.");
         return retval;
     }
 
     /**
      * 更新实体
      *
-     * @param servers 请求实体参数
+     * @param group 请求实体参数
      * @return 操作成功数
      */
     @Override
-    public Integer updateServers(ServersPo servers) {
-        log.debug("updateServers starting...");
+    public Integer updateGroup(GroupPo group) {
+        log.debug("updateGroup starting...");
         Integer retval;
         try {
-            servers.setUpdatetime(BizCache.getInstance().getNow());
-            retval = serversMapper.updateServers(servers);
+            group.setUpdatetime(BizCache.getInstance().getNow());
+            retval = groupMapper.updateGroup(group);
             if (retval == 0) {
                 throw new BizException(BizErrorCode.EX_ADD_FAIL);
             }
@@ -154,27 +154,27 @@ public class ServersServiceImpl implements IServersService {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("updateServers end.");
+        log.debug("updateGroup end.");
         return retval;
     }
 
     /**
      * 删除指定对象
      *
-     * @param id 服务器id
+     * @param groupid 权限组id
      * @return 操作成功数
      */
     @Override
-    public Integer deleteServers(Integer id) {
-        log.debug("deleteServers starting...");
+    public Integer deleteGroup(Integer groupid) {
+        log.debug("deleteGroup starting...");
         Integer retval;
         try {
-            retval = serversMapper.deleteServers(id);
+            retval = groupMapper.deleteGroup(groupid);
         } catch (SQLException ex) {
             log.error("exception:", ex);
             throw new BizException(BizErrorCode.EX_TRANSACTION_FAIL);
         }
-        log.debug("deleteServers end.");
+        log.debug("deleteGroup end.");
         return retval;
     }
 }

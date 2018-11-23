@@ -6,12 +6,12 @@ import lombok.Data;
 import java.io.Serializable;
 
 /**
- * table name : servers, table comment : 监控服务器表
+ * table name : server, table comment : 监控服务器表
  *
  * @author croakzh
  */
 @Data
-public class ServersPo extends PageBean implements Serializable {
+public class ServerPo extends PageBean implements Serializable {
 
     /**
      * serialVersionUID 持久化ID
@@ -19,9 +19,14 @@ public class ServersPo extends PageBean implements Serializable {
     private static final Long serialVersionUID = 1L;
 
     /**
-     * 服务器id
+     * 服务器id,主键
      */
-    private Integer id;
+    private Integer serverid;
+
+    /**
+     * 机器组id
+     */
+    private Integer groupid;
 
     /**
      * 服务器ip
@@ -31,7 +36,7 @@ public class ServersPo extends PageBean implements Serializable {
     /**
      * 服务器名称
      */
-    private String name;
+    private String hostname;
 
     /**
      * 描述
@@ -41,12 +46,12 @@ public class ServersPo extends PageBean implements Serializable {
     /**
      * ssh用户名
      */
-    private String username;
+    private String sshname;
 
     /**
      * ssh密码
      */
-    private String password;
+    private String sshpwd;
 
     /**
      * ssh状态 0在线 1离线
@@ -54,19 +59,9 @@ public class ServersPo extends PageBean implements Serializable {
     private Byte status;
 
     /**
-     * 新增人(管理员)
-     */
-    private Integer adduser;
-
-    /**
      * 新增时间
      */
     private String addtime;
-
-    /**
-     * 修改人
-     */
-    private Integer updateuser;
 
     /**
      * 修改时间

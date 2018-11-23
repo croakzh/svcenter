@@ -5,8 +5,7 @@ import com.croakzh.core.entity.IOStatInfo;
 import com.croakzh.core.entity.MemoryInfo;
 import com.croakzh.core.entity.vo.ServerVo;
 import com.croakzh.service.AbstractSystemService;
-
-import javax.xml.validation.Validator;
+import com.croakzh.service.Validator;
 
 /**
  * @author croakzh

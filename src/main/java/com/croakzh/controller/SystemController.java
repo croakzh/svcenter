@@ -39,6 +39,7 @@ public class SystemController {
         try {
             SystemInfo systemInfo = new SystemInfo();
             systemInfo.setCpuInfo(systemService.getCpuInfo(cond));
+            result.setData(systemInfo);
             result.setResult(0);
         } catch (BizException ex) {
             log.error("{} : {}", ex.getErrorcode(), ex.getDescription());
